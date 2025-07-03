@@ -1,0 +1,21 @@
+on: push
+name: 🚀 Deploy webs app on push
+ 
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+ 
+    - name: 📂 Sync files via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.3
+      with:
+        server: 160.153.173.183
+        username: hadayat@app.pakcr.org
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /
+        protocol: ftp
+        port: 21
